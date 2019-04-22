@@ -1,42 +1,135 @@
-<!doctype html>
-<html class="no-js" lang="vi">
+<!DOCTYPE html>
+<HTML dir='ltr' lang='id-ID'>
+
 <head>
-	<meta charset="utf-8">
-	<title>Demo</title>
-	<style>
-	</style>
-	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-<b:if cond='data:blog.pageType == &quot;item&quot;'>
-<script type='text/javascript'>
-//<![CDATA[
-var relnojudul=0,relmaxtampil=5,numchars=150,reljudul=[],relurls=[],relcuplikan=[],relgambar=[];function saringtags(b,e){for(var a=b.split("<"),c=0;c<a.length;c++)-1!=a[c].indexOf(">")&&(a[c]=a[c].substring(a[c].indexOf(">")+1,a[c].length));a=a.join("");return a=a.substring(0,e-1)}
-function relpostimgcuplik(b){for(var e=0;e<b.feed.entry.length;e++){var a=b.feed.entry[e];reljudul[relnojudul]=a.title.$t;postcontent="";"content"in a?postcontent=a.content.$t:"summary"in a&&(postcontent=a.summary.$t);relcuplikan[relnojudul]=saringtags(postcontent,numchars);postimg="media$thumbnail"in a?a.media$thumbnail.url:"http://2.bp.blogspot.com/-vm8ShalSGYE/UQzResC25ZI/AAAAAAAAHPI/RqQZVavm51k/s1600/no-image-namkna-blogspot.PNG";relgambar[relnojudul]=postimg;for(var c=0;c<a.link.length;c++)if("alternate"==a.link[c].rel){relurls[relnojudul]=a.link[c].href;
-break}relnojudul++}}function contains(b,e){for(var a=0;a<b.length;a++)if(b[a]==e)return!0;return!1}
-function artikelterkait(){for(var b=[],e=[],a=[],c=[],d=0;d<relurls.length;d++)contains(b,relurls[d])||(b.length+=1,b[b.length-1]=relurls[d],e.length+=1,e[e.length-1]=reljudul[d],a.length+=1,a[a.length-1]=relcuplikan[d],c.length+=1,c[c.length-1]=relgambar[d]);reljudul=e;relurls=b;relcuplikan=a;relgambar=c;for(d=0;d<reljudul.length;d++){var b=Math.floor((reljudul.length-1)*Math.random()),e=reljudul[d],a=relurls[d],c=relcuplikan[d],f=relgambar[d];reljudul[d]=reljudul[b];relurls[d]=relurls[b];relcuplikan[d]=
-relcuplikan[b];relgambar[d]=relgambar[b];reljudul[b]=e;relurls[b]=a;relcuplikan[b]=c;relgambar[b]=f}d=0;e=b=Math.floor((reljudul.length-1)*Math.random());for(c=document.URL;d<relmaxtampil&&!(relurls[b]!=c&&(a="<li class='news-title clearfix'>",a+="<a href='"+relurls[b]+"' rel='nofollow'  target='_top' title='"+reljudul[b]+"'><img src='"+relgambar[b]+"' /></a>",a+="<div class='isirelated'><h5>"+reljudul[b]+"</h5>",a+="<span class='news-text'>"+relcuplikan[b]+" ... </span></div>",a+="</li>",document.write(a),
-d++,d==relmaxtampil))&&!(b<reljudul.length-1?b++:b=0,b==e););};
-//]]></script>
-</b:if>
+    <meta charset='utf-8' />
+    <title>Related Post</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif
+        }
+        
+        body ul {
+            padding: 0;
+            margin: 0;
+            float: left
+        }
+        
+        body li {
+            list-style-type: none!important;
+            padding: 5px 0 5px;
+            height: auto;
+            float: left;
+            display: inline;
+            line-height: 1em;
+            margin: 0;
+            width: 100%
+        }
+        
+        span.news-text {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.2em
+        }
+        
+        body ul li a {
+            text-decoration: none;
+            display: block;
+            color: #15c;
+            transition: all .2s ease;
+            font-weight: 500;
+            line-height: 1em
+        }
+        
+        body ul li a:hover {
+            text-decoration: underline
+        }
+        
+        body ul li:hover a.relinkjdulx {
+            color: #EA4335
+        }
+        
+        body ul li img {
+            float: left;
+            margin-right: 10px;
+            padding: 0;
+            border-radius: 3px
+        }
+        
+        .relinkjdulx {
+            font-size: 17px;
+            margin-bottom: 5px
+        }
+        
+        @media only screen and (max-width: 600px) {
+            span.news-text {
+                display: none
+            }
+        }
+    </style>
 </head>
+
 <body>
-	
-<b:if cond='data:blog.pageType == &quot;item&quot;'>
-<div style='clear: both;'/>
-<div id='related_posts'>
-<h4>Bài Liên Quan</h4>
-<div id='bpslidein_place_holder'/>
-<b:loop values='data:post.labels' var='label'>
-<script expr:src='&quot;/feeds/posts/default/-/&quot; + data:label.name + &quot;?alt=json-in-script&amp;callback=relpostimgcuplik&amp;max-results=50&quot;' type='text/javascript'/>
-</b:loop>
-<span class='glap'><ul id='relpost_img_sum'>
-<script type='text/javascript'>artikelterkait();</script>
-</ul></span>
-</div>
-<script type='text/javascript'>
-//<![CDATA[
-function resizeThumb(e,b){var c=document.getElementById(e),d=c.getElementsByTagName("img");for(var a=0;a<d.length;a++){d[a].src=d[a].src.replace(/\/s72\-c/,"/s"+b+"-c");d[a].width=b;d[a].height=b}}resizeThumb("related_posts",120);
-//]]>
-</script>
-</b:if>
+    <h3><span>Read more</span></h3>
+    <ul>
+        <script>
+            function getQueryVariable(r) {
+                for (var l = window.location.search.substring(1).split("&"), e = 0; e < l.length; e++) {
+                    var t = l[e].split("=");
+                    if (t[0] == r) return t[1]
+                }
+                return !1
+            }
+
+            function saringtags(r, l) {
+                for (var e = r.split("<"), t = 0; t < e.length; t++) - 1 != e[t].indexOf(">") && (e[t] = e[t].substring(e[t].indexOf(">") + 1, e[t].length));
+                return e = e.join(""), e = e.substring(0, l - 1)
+            }
+            var simg = getQueryVariable("si"),
+                rsimg = (simg == false) ? "/s72-c/" : "/" + simg + "/";
+
+            function relpostimgcuplik(r) {
+                for (var l = 0; l < r.feed.entry.length; l++) {
+                    var e = r.feed.entry[l];
+                    reljudul[relnojudul] = e.title.$t, postcontent = "", "content" in e ? postcontent = e.content.$t : "summary" in e && (postcontent = e.summary.$t), relcuplikan[relnojudul] = saringtags(postcontent, numchars), postimg = "media$thumbnail" in e ? e.media$thumbnail.url.replace(/.*?:\/\//g, "//").replace(/\/s[0-9]+(\-c)?\//, rsimg) : "https://1.bp.blogspot.com/-LGEolwXn4BM/WS9-g9OMA_I/AAAAAAAAAU4/LWkMJrn8RI8m56N1U-10ZuLdAuFFJqTxQCLcB/s72/No%2BImage.png", relgambar[relnojudul] = postimg;
+                    for (var t = 0; t < e.link.length; t++)
+                        if ("alternate" == e.link[t].rel) {
+                            relurls[relnojudul] = e.link[t].href;
+                            break
+                        }
+                    relnojudul++
+                }
+            }
+
+            function contains(r, l) {
+                for (var e = 0; e < r.length; e++)
+                    if (r[e] == l) return !0;
+                return !1
+            }
+
+            function artikelterkait() {
+                for (var r = new Array(0), l = new Array(0), e = new Array(0), t = new Array(0), a = 0; a < relurls.length; a++) contains(r, relurls[a]) || (r.length += 1, r[r.length - 1] = relurls[a], l.length += 1, l[l.length - 1] = reljudul[a], e.length += 1, e[e.length - 1] = relcuplikan[a], t.length += 1, t[t.length - 1] = relgambar[a]);
+                for (reljudul = l, relurls = r, relcuplikan = e, relgambar = t, a = 0; a < reljudul.length; a++) {
+                    var n = Math.floor((reljudul.length - 1) * Math.random()),
+                        u = reljudul[a],
+                        i = relurls[a],
+                        s = relcuplikan[a],
+                        o = relgambar[a];
+                    reljudul[a] = reljudul[n], relurls[a] = relurls[n], relcuplikan[a] = relcuplikan[n], relgambar[a] = relgambar[n], reljudul[n] = u, relurls[n] = i, relcuplikan[n] = s, relgambar[n] = o
+                }
+                for (var g, c = 0, p = Math.floor((reljudul.length - 1) * Math.random()), m = p, d = getQueryVariable("pos"); c < relmaxtampil && (relurls[p] == d || (g = "<li class='news-title clearfix'>", g += "<a href='" + relurls[p] + "' rel='nofollow' target='_blank' title='" + reljudul[p] + "'><img src='" + relgambar[p] + "' /></a>", g += "<a class='relinkjdulx' href='" + relurls[p] + "' target='_blank'>" + reljudul[p] + "</a>", g += "<span class='news-text'>" + relcuplikan[p] + " ... </span>", g += "</li>", document.write(g), ++c != relmaxtampil)) && (p < reljudul.length - 1 ? p++ : p = 0, p != m););
+            }
+            for (var labels = getQueryVariable("labels"), relmaxtampil = getQueryVariable("num"), url = getQueryVariable("url"), res = labels.split(","), i = 0, text = ""; res[i];) text += '<script src="' + url + "feeds/posts/default/-/" + res[i] + '?alt=json&amp;callback=relpostimgcuplik&amp;max-results=50"><\/script>', i++;
+            var relnojudul = 0,
+                numchars = 120,
+                reljudul = new Array,
+                relurls = new Array,
+                relcuplikan = new Array,
+                relgambar = new Array;
+            document.write(text + '<script>artikelterkait();<\/script>');
+        </script>
+    </ul>
 </body>
-</html>
+
+</HTML>
